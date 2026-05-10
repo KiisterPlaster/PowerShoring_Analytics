@@ -1,40 +1,47 @@
-# Web Framework
-fastapi==0.115.0
-uvicorn[standard]==0.30.0
-python-multipart==0.0.9
+# ====== Web Framework ======
+fastapi>=0.115.0
+uvicorn[standard]>=0.30.0
+python-multipart>=0.0.9
 
-# HTTP Client (async)
-httpx==0.27.0
+# ====== HTTP Client (async) ======
+httpx>=0.27.0
 
-# Database
-psycopg2-binary==2.9.9
-asyncpg==0.29.0
-sqlalchemy[asyncio]==2.0.31
-geoalchemy2==0.15.1
+# ====== Database: PostGIS ======
+# Connection: postgresql://user:password@host:5432/database
+# Driver: psycopg2-binary (sync) / asyncpg (async)
+psycopg2-binary>=2.9.9
+asyncpg>=0.29.0
+sqlalchemy[asyncio]>=2.0.31
+geoalchemy2>=0.15.1
 
-# Geospatial
-geopandas==1.0.1
-pyogrio==0.9.0
-shapely==2.0.4
+# ====== Geospatial: GeoPandas + GEOS/Shapely ======
+# GeoPandas: read_postgis(), to_postgis(), read_file()
+# Shapely: Python bindings for GEOS C++ engine
+# Pyogrio: Fast I/O engine for spatial files (.shp, .gpkg)
+geopandas>=1.0.1
+pyogrio>=0.9.0
+shapely>=2.0.4
 
-# Data
-pandas==2.2.2
-sidrapy==0.1.3
-openpyxl==3.1.5
+# ====== Data: IBGE/SIDRA + ANP ======
+# SIDRA: sidrapy.get_table() → IBGE API v3 (OLAP)
+# ANP: httpx REST + pandas CSV (Windows-1252 encoding)
+pandas>=2.2.2
+sidrapy>=0.1.3
+openpyxl>=3.1.5
 
-# Task Queue
-celery[redis]==5.4.0
-redis==5.0.7
+# ====== Task Queue ======
+celery[redis]>=5.4.0
+redis>=5.0.7
 
-# Firebase
-firebase-admin==6.5.0
+# ====== Firebase Storage ======
+firebase-admin>=6.5.0
 
-# AI
-openai==1.35.0
+# ====== AI: OpenAI ======
+openai>=1.35.0
 
-# CORS
-python-dotenv==1.0.1
+# ====== Config ======
+python-dotenv>=1.0.1
 
-# MapBiomas (optional)
-# earthengine-api
-# OWSLib
+# ====== MapBiomas (optional advanced) ======
+# earthengine-api    # Google Earth Engine (requires auth)
+# OWSLib             # OGC WMS/WFS client

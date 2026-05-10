@@ -10,6 +10,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from core.config import settings
 from api.arcgis_proxy import router as arcgis_router
 from api.dados_ibge import router as ibge_router
+from api.dados_anp import router as anp_router
+from api.dados_mapbiomas import router as mapbiomas_router
+from api.geospatial import router as geo_router
 from api.clusters import router as clusters_router
 from api.matchmaker import router as matchmaker_router
 
@@ -49,6 +52,9 @@ app.add_middleware(
 # Register routers
 app.include_router(arcgis_router)
 app.include_router(ibge_router)
+app.include_router(anp_router)
+app.include_router(mapbiomas_router)
+app.include_router(geo_router)
 app.include_router(clusters_router)
 app.include_router(matchmaker_router)
 
