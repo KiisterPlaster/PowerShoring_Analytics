@@ -59,10 +59,32 @@ async def query_epe_layer(
 @router.get("/ben")
 @cached(ttl=86400, key_prefix="epe_ben")
 async def get_ben_summary():
-    """Shortcut metadata regarding Balanço Energético Nacional availability."""
+    """Shortcut metadata regarding Balanço Energético Nacional detailed metrics."""
     return {
-        "source": "EPE - Balanço Energético Nacional",
-        "type": "Yearly Publication",
-        "open_data_portal": "https://www.epe.gov.br/dados-abertos",
-        "note": "Data parsed via bulk file load into PowerShoring database."
+        "source": "EPE - Balanço Energético Nacional (BEN)",
+        "base_year": 2024,
+        "total_energy_matrix": {
+            "renewables": {
+                "percentage": 49.1,
+                "breakdown": [
+                    {"source": "Sugar Cane (Ethanol/Biomass)", "value": 19.1},
+                    {"source": "Hydropower", "value": 12.5},
+                    {"source": "Firewood/Charcoal", "value": 9.0},
+                    {"source": "Wind & Solar", "value": 8.5}
+                ]
+            },
+            "non_renewables": {
+                "percentage": 50.9,
+                "breakdown": [
+                    {"source": "Petroleum & Derivatives", "value": 35.7},
+                    {"source": "Natural Gas", "value": 10.5},
+                    {"source": "Coal", "value": 4.7}
+                ]
+            }
+        },
+        "electrical_matrix": {
+            "renewables": 89.2,
+            "clean_leader": "Brazil ranks globally as one of the clean electricity matrix leaders."
+        },
+        "open_data_portal": "https://www.epe.gov.br/dados-abertos"
     }
