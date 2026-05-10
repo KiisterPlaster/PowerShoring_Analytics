@@ -20,6 +20,8 @@ from core.geo_engine import (
 )
 import tempfile
 import os
+import base64
+from etl.tasks import task_process_shapefile_upload
 
 router = APIRouter(prefix="/api/geo", tags=["Geospatial - PostGIS/GeoPandas/GEOS"])
 
@@ -174,6 +176,49 @@ async def upload_shapefile(
     finally:
         if os.path.exists(tmp_path):
             os.unlink(tmp_path)
+
+
+@router.post("/etl/submit-background")
+async def submit_spatial_ingest(
+    file: UploadFile = File(..., description="Zipped Shapefile ONLY (.zip)"),
+    table_name: str = Query(..., description="Target layer table identifier"),
+):
+    """
+    Submit a heavy Shapefile ingestion job to the background worker (Celery).
+    Guarantees API doesn't time-out on massive vector datasets.
+    """
+    if not file.filename.endswith(".zip"):
+        raise HTTPException(400, detail="Must upload a .zip archive containing .shp files.")
+        
+    try:
+        content = await file.read()
+        # Transmit via base64 string for Celery (note: for prod large files use shared storage)
+        b64_data = base64.b64encode(content).decode("utf-8")
+        
+        # Trigger task execution
+        task = task_process_shapefile_upload.delay(b64_data, table_name, table_name)
+        
+        return {
+            "message": "ETL Job accepted and sent to background workers.",
+            "job_id": task.id,
+            "status_check": f"/api/geo/etl/status/{task.id}"
+        }
+    except Exception as e:
+         raise HTTPException(500, detail=f"Broker delivery failure: {str(e)}")
+
+@router.get("/etl/status/{job_id}")
+async def check_etl_status(job_id: str):
+    """Poll status of the submitted background spatial ingest."""
+    from celery.result import AsyncResult
+    from etl.worker import celery_app
+    
+    res = AsyncResult(job_id, app=celery_app)
+    return {
+        "job_id": job_id,
+        "status": res.status,
+        "ready": res.ready(),
+        "result": res.result if res.ready() else "Processing..."
+    }
 
 
 # ========================================================

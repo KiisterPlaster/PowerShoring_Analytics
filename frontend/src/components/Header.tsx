@@ -1,12 +1,14 @@
-import { Brain, Menu } from 'lucide-react';
+import { Brain, Menu, Map as MapIcon, LayoutDashboard } from 'lucide-react';
 
 interface HeaderProps {
+  currentView: 'map' | 'dashboard';
+  onSetView: (view: 'map' | 'dashboard') => void;
   onToggleMatchmaker: () => void;
   onToggleSidebar: () => void;
   sidebarOpen: boolean;
 }
 
-export default function Header({ onToggleMatchmaker, onToggleSidebar, sidebarOpen }: HeaderProps) {
+export default function Header({ currentView, onSetView, onToggleMatchmaker, onToggleSidebar, sidebarOpen }: HeaderProps) {
   return (
     <header className="h-14 glass flex items-center justify-between px-4 border-b border-border z-30 relative">
       {/* Left */}
@@ -33,10 +35,28 @@ export default function Header({ onToggleMatchmaker, onToggleSidebar, sidebarOpe
         </div>
       </div>
 
-      {/* Center badge */}
-      <div className="hidden md:flex items-center gap-2 bg-surface-card/50 px-3 py-1.5 rounded-full border border-border">
-        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse" />
-        <span className="text-[11px] text-text-muted">Dados em tempo real | PID ArcGIS</span>
+      {/* Center: Main Navigation Tabs */}
+      <div className="flex items-center bg-surface-card/50 p-1 rounded-xl border border-border space-x-1">
+        <button
+          onClick={() => onSetView('map')}
+          className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm transition-all ${
+            currentView === 'map' 
+            ? 'bg-action-orange/20 text-action-orange font-bold border border-action-orange/30' 
+            : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover'
+          }`}
+        >
+          <MapIcon size={16} /> <span className="hidden md:inline">Mapa Estratégico</span>
+        </button>
+        <button
+          onClick={() => onSetView('dashboard')}
+          className={`flex items-center gap-2 px-4 py-1.5 rounded-lg text-sm transition-all ${
+            currentView === 'dashboard' 
+            ? 'bg-emerald-500/20 text-emerald-400 font-bold border border-emerald-500/30' 
+            : 'text-text-secondary hover:text-text-primary hover:bg-surface-hover'
+          }`}
+        >
+          <LayoutDashboard size={16} /> <span className="hidden md:inline">Hub de Dados</span>
+        </button>
       </div>
 
       {/* Right */}

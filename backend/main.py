@@ -15,6 +15,14 @@ from api.dados_mapbiomas import router as mapbiomas_router
 from api.geospatial import router as geo_router
 from api.clusters import router as clusters_router
 from api.matchmaker import router as matchmaker_router
+from api.dados_terrabrasilis import router as terra_router
+from api.dados_epe import router as epe_router
+from api.dados_aneel import router as aneel_router
+from api.dados_worldbank import router as wb_router
+from api.dados_irena import router as irena_router
+from api.dados_conab import router as conab_router
+from api.dados_externos import router as ext_router
+from api.dados_atlas import router as atlas_router
 
 
 @asynccontextmanager
@@ -57,6 +65,14 @@ app.include_router(mapbiomas_router)
 app.include_router(geo_router)
 app.include_router(clusters_router)
 app.include_router(matchmaker_router)
+app.include_router(terra_router)
+app.include_router(epe_router)
+app.include_router(aneel_router)
+app.include_router(wb_router)
+app.include_router(irena_router)
+app.include_router(conab_router)
+app.include_router(ext_router)
+app.include_router(atlas_router)
 
 
 @app.get("/api/health", tags=["System"])

@@ -11,6 +11,7 @@ import io
 import httpx
 import pandas as pd
 from fastapi import APIRouter, HTTPException, Query
+from core.cache import cached
 
 router = APIRouter(prefix="/api/anp", tags=["ANP - Energia"])
 
@@ -49,6 +50,16 @@ ANP_DATASETS = {
         "csv_url": "https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/reservas/reservas-petroleo-m3.csv",
         "description": "Reservas nacionais provadas de petroleo e gas",
     },
+    "etanol": {
+        "url": "https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos",
+        "csv_url": "https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/vdpb/vendas-etanol-hidratado-m3.csv",
+        "description": "Vendas específicas de etanol hidratado por UF",
+    },
+    "biodiesel": {
+        "url": "https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos",
+        "csv_url": "https://www.gov.br/anp/pt-br/centrais-de-conteudo/dados-abertos/arquivos/vdpb/vendas-biodiesel-b100-m3.csv",
+        "description": "Vendas específicas de biodiesel puro (B100) por UF",
+    },
 }
 
 
@@ -66,6 +77,7 @@ async def list_anp_datasets():
 
 
 @router.get("/data/{dataset_key}")
+@cached(ttl=3600, key_prefix="anp_data")
 async def get_anp_data(
     dataset_key: str,
     limit: int = Query(500, ge=1, le=5000, description="Max rows to return"),
@@ -148,6 +160,7 @@ ANP_CKAN_BASE = "https://dados.gov.br/api/3/action"
 
 
 @router.get("/search")
+@cached(ttl=3600, key_prefix="anp_search")
 async def search_anp_datasets(
     query: str = Query("petroleo", description="Search term"),
     rows: int = Query(10, ge=1, le=50, description="Number of results"),

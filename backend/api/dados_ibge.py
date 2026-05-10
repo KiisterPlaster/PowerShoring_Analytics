@@ -3,12 +3,15 @@ IBGE / SIDRA Data Router — Consumes real IBGE SIDRA API v3 for socioeconomic d
 """
 import sidrapy
 import pandas as pd
+import httpx
 from fastapi import APIRouter, HTTPException, Query
+from core.cache import cached
 
-router = APIRouter(prefix="/api/ibge", tags=["IBGE / SIDRA"])
+router = APIRouter(prefix="/api/ibge", tags=["IBGE / SIDRA / BDiA"])
 
 
 @router.get("/pib")
+@cached(ttl=86400, key_prefix="sidra_pib")
 async def get_pib_municipal(
     territorial_level: str = Query("3", description="1=Brasil, 2=UF, 3=Município"),
     ibge_code: str = Query("all", description="IBGE territorial code or 'all'"),
@@ -46,6 +49,7 @@ async def get_pib_municipal(
 
 
 @router.get("/pam")
+@cached(ttl=86400, key_prefix="sidra_pam")
 async def get_producao_agricola(
     territorial_level: str = Query("3", description="1=Brasil, 2=UF, 3=Município"),
     ibge_code: str = Query("all", description="IBGE territorial code or 'all'"),
@@ -85,6 +89,7 @@ async def get_producao_agricola(
 
 
 @router.get("/pevs")
+@cached(ttl=86400, key_prefix="sidra_pevs")
 async def get_extracao_vegetal(
     territorial_level: str = Query("2", description="1=Brasil, 2=UF"),
     ibge_code: str = Query("all", description="IBGE territorial code or 'all'"),
@@ -118,3 +123,19 @@ async def get_extracao_vegetal(
             status_code=502,
             detail=f"Error fetching PEVS data: {str(exc)}",
         )
+
+
+@router.get("/bdia/metadata")
+@cached(ttl=86400, key_prefix="bdia_meta")
+async def get_bdia_metadata():
+    """
+    Returns metadata catalog endpoint details for BDiA (Banco de Informações Ambientais).
+    IBGE uses separate infrastructure for BDiA.
+    """
+    return {
+        "source": "IBGE BDiA",
+        "description": "Coleção de bases temáticas de recursos naturais: Geologia, Pedologia, Vegetação.",
+        "web_portal": "https://bdiaweb.ibge.gov.br/#/home",
+        "api_notes": "Data vectors stored locally in spatial_layers via ETL processes.",
+        "available_themes": ["Geomorfologia", "Geologia", "Pedologia", "Vegetação"]
+    }

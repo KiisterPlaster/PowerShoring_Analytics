@@ -1,0 +1,42 @@
+# PowerShoring Analytics — Docker Compose
+# Services: PostGIS (spatial database) + Redis (cache/queue broker)
+# Usage: docker-compose -f infrastructure/docker-compose.yml up -d
+
+services:
+  postgis:
+    image: postgis/postgis:16-3.4
+    container_name: powershoring-postgis
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: powershoring_db
+      POSTGRES_USER: powershoring
+      POSTGRES_PASSWORD: powershoring
+    volumes:
+      - postgis_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/01-init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U powershoring -d powershoring_db"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: powershoring-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes --maxmemory 256mb --maxmemory-policy allkeys-lru
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgis_data:
+  redis_data:
