@@ -1,4 +1,5 @@
 """Pydantic schemas for API request/response validation."""
+# pylint: disable=too-few-public-methods
 from pydantic import BaseModel, Field
 
 

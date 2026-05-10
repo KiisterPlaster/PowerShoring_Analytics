@@ -1,0 +1,10 @@
+[MASTER]
+ignore=venv,env,.git,__pycache__
+
+[MESSAGES CONTROL]
+disable=
+    too-few-public-methods,
+    duplicate-code
+
+[FORMAT]
+max-line-length=120

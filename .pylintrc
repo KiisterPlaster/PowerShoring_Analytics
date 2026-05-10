@@ -1,0 +1,11 @@
+[MASTER]
+ignore=venv,env,.git,__pycache__
+
+[MESSAGES CONTROL]
+# Disabling rules that are not compatible with FastAPI/Pydantic convention
+disable=
+    too-few-public-methods,
+    duplicate-code
+
+[FORMAT]
+max-line-length=120
