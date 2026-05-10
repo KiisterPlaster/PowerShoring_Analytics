@@ -24,17 +24,43 @@ from api.dados_conab import router as conab_router
 from api.dados_externos import router as ext_router
 from api.dados_atlas import router as atlas_router
 
+from core.database import init_db_tables
+from core.seeder import seed_database
+
+from api.arcgis_proxy import close_client as close_arcgis_client
+from api.dados_mapbiomas import close_client as close_mapbiomas_client
+from api.dados_anp import close_client as close_anp_client
+from core.cache import close_redis_client
+
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     """Application startup/shutdown lifecycle."""
     print(f"[START] {settings.APP_NAME} v{settings.APP_VERSION} starting...")
+    
+    # Perform dynamic DB integrity enforcement and seeding
+    print("[DB] Enforcing schema & populating seeds...")
+    try:
+        init_db_tables()
+        seed_database()
+    except Exception as e:
+        print(f"[DB] WARNING: Startup database setup error: {str(e)}")
+        
     print(f"[ARCGIS] Base: {settings.ARCGIS_BASE_URL}")
     print(f"[LAYERS] Registered: {len(settings.ARCGIS_LAYERS)}")
-    print(f"[CLUSTERS] Loaded: 9 (Atlas 2025)")
+    print(f"[CLUSTERS] Dynamic DB Loaded.")
     print(f"[AI] Model: {settings.OPENAI_MODEL}")
     yield
     print("[STOP] Shutting down PowerShoring Analytics...")
+    print("[STOP] Closing persistent HTTPX clients...")
+    try:
+        await close_arcgis_client()
+        await close_mapbiomas_client()
+        await close_anp_client()
+        await close_redis_client()
+        print("[STOP] Resource cleanup complete.")
+    except Exception as e:
+         print(f"[STOP] WARNING: Resource cleanup encountered an error: {str(e)}")
 
 
 app = FastAPI(

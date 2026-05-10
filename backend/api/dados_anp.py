@@ -26,6 +26,13 @@ async def _get_client() -> httpx.AsyncClient:
     return _client
 
 
+async def close_client():
+    """Gracefully terminate the persistent ANP HTTP client."""
+    global _client
+    if _client is not None and not _client.is_closed:
+        await _client.aclose()
+
+
 # ========================================================
 # ANP Official Data Endpoints (Portal de Dados Abertos)
 # ========================================================

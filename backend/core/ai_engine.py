@@ -4,8 +4,10 @@ Uses OpenAI GPT-4o with System Prompt Injection containing Atlas do Futuro Indus
 """
 import json
 from openai import AsyncOpenAI
+from sqlalchemy import select
 from core.config import settings
-from core.clusters_data import CLUSTERS_DATA
+from core.database import get_async_session
+from models.orm import Cluster
 
 _client: AsyncOpenAI | None = None
 
@@ -52,8 +54,22 @@ Responda SEMPRE em JSON válido com exatamente estas chaves:
 
 
 async def run_matchmaker(user_query: str) -> dict:
-    """Execute the AI Matchmaker with the investor's query."""
-    clusters_json = json.dumps(CLUSTERS_DATA, ensure_ascii=False, indent=2)
+    """Execute the AI Matchmaker with the investor's query using live cluster snapshots."""
+    
+    # Fetch dynamic clusters straight from the database
+    async with get_async_session() as session:
+        # Just selecting columns AI cares about for minimal payload
+        stmt = select(
+            Cluster.id, Cluster.name, Cluster.region, Cluster.state,
+            Cluster.vocations, Cluster.energy_sources, Cluster.critical_minerals,
+            Cluster.hydrogen_potential, Cluster.description
+        )
+        result = await session.execute(stmt)
+        # Convert mapped results list into plain dictionary list
+        clusters_data_list = [dict(row) for row in result.mappings().all()]
+        
+    # Ingest actual DB state into prompt
+    clusters_json = json.dumps(clusters_data_list, ensure_ascii=False, indent=2)
     system = SYSTEM_PROMPT.format(clusters_json=clusters_json)
 
     response = await _get_client().chat.completions.create(

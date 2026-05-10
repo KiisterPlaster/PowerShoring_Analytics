@@ -29,6 +29,13 @@ async def get_redis_client() -> redis.Redis:
         _redis = redis.from_url(settings.REDIS_URL, decode_responses=True)
     return _redis
 
+async def close_redis_client():
+    """Gracefully release connections to prevent pool leaks on shutdown."""
+    global _redis
+    if _redis is not None:
+        await _redis.aclose()
+        logger.info("[Redis] Connection successfully closed.")
+
 async def cache_get(key: str) -> Optional[Any]:
     """Retrieve data from cache."""
     try:

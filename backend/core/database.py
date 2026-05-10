@@ -81,3 +81,10 @@ def get_sync_engine() -> Engine:
 class Base(DeclarativeBase):
     """Declarative base for all ORM models."""
     pass
+
+
+def init_db_tables():
+    """Synchronous wrapper to create tables defined in Base if not exist."""
+    import models.orm  # Ensure models are imported before calling create_all
+    engine = get_sync_engine()
+    Base.metadata.create_all(bind=engine)

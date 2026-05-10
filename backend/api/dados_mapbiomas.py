@@ -24,6 +24,13 @@ async def _get_client() -> httpx.AsyncClient:
     return _client
 
 
+async def close_client():
+    """Close MapBiomas HTTP client properly on exit."""
+    global _client
+    if _client is not None and not _client.is_closed:
+        await _client.aclose()
+
+
 # ========================================================
 # MapBiomas via PID ArcGIS ImageServer (primary connection)
 # ========================================================

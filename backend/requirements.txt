@@ -21,6 +21,8 @@ geoalchemy2>=0.15.1
 geopandas>=1.0.1
 pyogrio>=0.9.0
 shapely>=2.0.4
+dask-geopandas>=0.4.2
+dask>=2024.5.0
 
 # ====== Data: IBGE/SIDRA + ANP ======
 # SIDRA: sidrapy.get_table() → IBGE API v3 (OLAP)

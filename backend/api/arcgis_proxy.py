@@ -22,6 +22,13 @@ async def get_client() -> httpx.AsyncClient:
     return _client
 
 
+async def close_client():
+    """Explicitly close the shared httpx client on shutdown to prevent leaks."""
+    global _client
+    if _client is not None and not _client.is_closed:
+        await _client.aclose()
+
+
 @router.get("/catalog")
 async def list_available_layers():
     """Return metadata about all available map layers."""
