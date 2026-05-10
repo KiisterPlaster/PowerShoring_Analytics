@@ -1,0 +1,427 @@
+﻿version: 1
+generated_at: '2026-03-21T02:05:18.8042722-04:00'
+total_skill_directories: 141
+skills:
+  - name: accessibility-mobile
+    has_skill_file: true
+    path: .agent/skills/accessibility-mobile
+  - name: accessibility-wcag
+    has_skill_file: true
+    path: .agent/skills/accessibility-wcag
+  - name: agent-economy
+    has_skill_file: true
+    path: .agent/skills/agent-economy
+  - name: agent-evolution
+    has_skill_file: true
+    path: .agent/skills/agent-evolution
+  - name: agent-factory
+    has_skill_file: true
+    path: .agent/skills/agent-factory
+  - name: ai-backend-patterns
+    has_skill_file: true
+    path: .agent/skills/ai-backend-patterns
+  - name: ai-data-patterns
+    has_skill_file: true
+    path: .agent/skills/ai-data-patterns
+  - name: ai-infrastructure
+    has_skill_file: true
+    path: .agent/skills/ai-infrastructure
+  - name: ai-platform-patterns
+    has_skill_file: true
+    path: .agent/skills/ai-platform-patterns
+  - name: ai-ui-patterns
+    has_skill_file: true
+    path: .agent/skills/ai-ui-patterns
+  - name: ai-venture-capital
+    has_skill_file: true
+    path: .agent/skills/ai-venture-capital
+  - name: analytics-mobile
+    has_skill_file: true
+    path: .agent/skills/analytics-mobile
+  - name: animation-guide
+    has_skill_file: true
+    path: .agent/skills/animation-guide
+  - name: api-design
+    has_skill_file: true
+    path: .agent/skills/api-design
+  - name: api-patterns
+    has_skill_file: true
+    path: .agent/skills/api-patterns
+  - name: app-builder
+    has_skill_file: true
+    path: .agent/skills/app-builder
+  - name: architecture
+    has_skill_file: true
+    path: .agent/skills/architecture
+  - name: backup-recovery
+    has_skill_file: true
+    path: .agent/skills/backup-recovery
+  - name: bash-linux
+    has_skill_file: true
+    path: .agent/skills/bash-linux
+  - name: behavioral-modes
+    has_skill_file: true
+    path: .agent/skills/behavioral-modes
+  - name: brainstorming
+    has_skill_file: true
+    path: .agent/skills/brainstorming
+  - name: chaos-engineering
+    has_skill_file: true
+    path: .agent/skills/chaos-engineering
+  - name: ci-cd-mobile
+    has_skill_file: true
+    path: .agent/skills/ci-cd-mobile
+  - name: ci-cd-systems
+    has_skill_file: true
+    path: .agent/skills/ci-cd-systems
+  - name: clean-architecture
+    has_skill_file: true
+    path: .agent/skills/clean-architecture
+  - name: clean-code
+    has_skill_file: true
+    path: .agent/skills/clean-code
+  - name: cloud-architecture
+    has_skill_file: true
+    path: .agent/skills/cloud-architecture
+  - name: code-review-checklist
+    has_skill_file: true
+    path: .agent/skills/code-review-checklist
+  - name: compliance-governance
+    has_skill_file: true
+    path: .agent/skills/compliance-governance
+  - name: cqrs-patterns
+    has_skill_file: true
+    path: .agent/skills/cqrs-patterns
+  - name: critical-review
+    has_skill_file: true
+    path: .agent/skills/critical-review
+  - name: dag-execution
+    has_skill_file: true
+    path: .agent/skills/dag-execution
+  - name: data-analysis
+    has_skill_file: true
+    path: .agent/skills/data-analysis
+  - name: database-design
+    has_skill_file: true
+    path: .agent/skills/database-design
+  - name: data-engineering
+    has_skill_file: true
+    path: .agent/skills/data-engineering
+  - name: data-governance
+    has_skill_file: true
+    path: .agent/skills/data-governance
+  - name: data-lifecycle
+    has_skill_file: true
+    path: .agent/skills/data-lifecycle
+  - name: data-observability
+    has_skill_file: true
+    path: .agent/skills/data-observability
+  - name: data-pipelines
+    has_skill_file: true
+    path: .agent/skills/data-pipelines
+  - name: data-science-workflows
+    has_skill_file: true
+    path: .agent/skills/data-science-workflows
+  - name: data-security
+    has_skill_file: true
+    path: .agent/skills/data-security
+  - name: data-warehouse
+    has_skill_file: true
+    path: .agent/skills/data-warehouse
+  - name: deployment-procedures
+    has_skill_file: true
+    path: .agent/skills/deployment-procedures
+  - name: design-system-architecture
+    has_skill_file: true
+    path: .agent/skills/design-system-architecture
+  - name: devops-foundations
+    has_skill_file: true
+    path: .agent/skills/devops-foundations
+  - name: disaster-recovery
+    has_skill_file: true
+    path: .agent/skills/disaster-recovery
+  - name: distributed-databases
+    has_skill_file: true
+    path: .agent/skills/distributed-databases
+  - name: distributed-systems
+    has_skill_file: true
+    path: .agent/skills/distributed-systems
+  - name: documentation-templates
+    has_skill_file: true
+    path: .agent/skills/documentation-templates
+  - name: domain-driven-design
+    has_skill_file: true
+    path: .agent/skills/domain-driven-design
+  - name: edge-rendering
+    has_skill_file: true
+    path: .agent/skills/edge-rendering
+  - name: event-driven-systems
+    has_skill_file: true
+    path: .agent/skills/event-driven-systems
+  - name: event-sourcing
+    has_skill_file: true
+    path: .agent/skills/event-sourcing
+  - name: fault-tolerant-systems
+    has_skill_file: true
+    path: .agent/skills/fault-tolerant-systems
+  - name: finops
+    has_skill_file: true
+    path: .agent/skills/finops
+  - name: finops-data
+    has_skill_file: true
+    path: .agent/skills/finops-data
+  - name: finops-engineering
+    has_skill_file: true
+    path: .agent/skills/finops-engineering
+  - name: frontend-design
+    has_skill_file: true
+    path: .agent/skills/frontend-design
+  - name: frontend-observability
+    has_skill_file: true
+    path: .agent/skills/frontend-observability
+  - name: frontend-performance
+    has_skill_file: true
+    path: .agent/skills/frontend-performance
+  - name: frontend-security
+    has_skill_file: true
+    path: .agent/skills/frontend-security
+  - name: game-development
+    has_skill_file: true
+    path: .agent/skills/game-development
+  - name: geo-fundamentals
+    has_skill_file: true
+    path: .agent/skills/geo-fundamentals
+  - name: gitops
+    has_skill_file: true
+    path: .agent/skills/gitops
+  - name: i18n-localization
+    has_skill_file: true
+    path: .agent/skills/i18n-localization
+  - name: incident-response
+    has_skill_file: true
+    path: .agent/skills/incident-response
+  - name: infrastructure-as-code
+    has_skill_file: true
+    path: .agent/skills/infrastructure-as-code
+  - name: intelligent-routing
+    has_skill_file: true
+    path: .agent/skills/intelligent-routing
+  - name: kubernetes
+    has_skill_file: true
+    path: .agent/skills/kubernetes
+  - name: lakehouse
+    has_skill_file: true
+    path: .agent/skills/lakehouse
+  - name: lint-and-validate
+    has_skill_file: true
+    path: .agent/skills/lint-and-validate
+  - name: llm-systems
+    has_skill_file: true
+    path: .agent/skills/llm-systems
+  - name: machine-learning-systems
+    has_skill_file: true
+    path: .agent/skills/machine-learning-systems
+  - name: market-intelligence
+    has_skill_file: true
+    path: .agent/skills/market-intelligence
+  - name: mcp-builder
+    has_skill_file: true
+    path: .agent/skills/mcp-builder
+  - name: migration-patterns
+    has_skill_file: true
+    path: .agent/skills/migration-patterns
+  - name: mobile-backend
+    has_skill_file: true
+    path: .agent/skills/mobile-backend
+  - name: mobile-debugging
+    has_skill_file: true
+    path: .agent/skills/mobile-debugging
+  - name: mobile-design
+    has_skill_file: true
+    path: .agent/skills/mobile-design
+  - name: mobile-navigation
+    has_skill_file: true
+    path: .agent/skills/mobile-navigation
+  - name: mobile-performance
+    has_skill_file: true
+    path: .agent/skills/mobile-performance
+  - name: mobile-security
+    has_skill_file: true
+    path: .agent/skills/mobile-security
+  - name: mobile-testing
+    has_skill_file: true
+    path: .agent/skills/mobile-testing
+  - name: monorepo-strategy
+    has_skill_file: true
+    path: .agent/skills/monorepo-strategy
+  - name: multi-region-architecture
+    has_skill_file: true
+    path: .agent/skills/multi-region-architecture
+  - name: multi-region-systems
+    has_skill_file: true
+    path: .agent/skills/multi-region-systems
+  - name: networking
+    has_skill_file: true
+    path: .agent/skills/networking
+  - name: nextjs-app-router
+    has_skill_file: true
+    path: .agent/skills/nextjs-app-router
+  - name: nextjs-best-practices
+    has_skill_file: true
+    path: .agent/skills/nextjs-best-practices
+  - name: nodejs-best-practices
+    has_skill_file: true
+    path: .agent/skills/nodejs-best-practices
+  - name: observability
+    has_skill_file: true
+    path: .agent/skills/observability
+  - name: offline-sync
+    has_skill_file: true
+    path: .agent/skills/offline-sync
+  - name: on-device-ai
+    has_skill_file: true
+    path: .agent/skills/on-device-ai
+  - name: parallel-agents
+    has_skill_file: true
+    path: .agent/skills/parallel-agents
+  - name: performance-optimization
+    has_skill_file: true
+    path: .agent/skills/performance-optimization
+  - name: performance-profiling
+    has_skill_file: true
+    path: .agent/skills/performance-profiling
+  - name: plan-writing
+    has_skill_file: true
+    path: .agent/skills/plan-writing
+  - name: platform-android
+    has_skill_file: true
+    path: .agent/skills/platform-android
+  - name: platform-engineering
+    has_skill_file: true
+    path: .agent/skills/platform-engineering
+  - name: platform-ios
+    has_skill_file: true
+    path: .agent/skills/platform-ios
+  - name: powershell-windows
+    has_skill_file: true
+    path: .agent/skills/powershell-windows
+  - name: product-synthesis
+    has_skill_file: true
+    path: .agent/skills/product-synthesis
+  - name: prompt-engineering-patterns
+    has_skill_file: true
+    path: .agent/skills/prompt-engineering-patterns
+  - name: python-patterns
+    has_skill_file: true
+    path: .agent/skills/python-patterns
+  - name: query-optimization
+    has_skill_file: true
+    path: .agent/skills/query-optimization
+  - name: react-patterns
+    has_skill_file: true
+    path: .agent/skills/react-patterns
+  - name: red-team-tactics
+    has_skill_file: true
+    path: .agent/skills/red-team-tactics
+  - name: refactoring-patterns
+    has_skill_file: true
+    path: .agent/skills/refactoring-patterns
+  - name: reliability-engineering
+    has_skill_file: true
+    path: .agent/skills/reliability-engineering
+  - name: scheduler-systems
+    has_skill_file: true
+    path: .agent/skills/scheduler-systems
+  - name: schema-design
+    has_skill_file: true
+    path: .agent/skills/schema-design
+  - name: secrets-management
+    has_skill_file: true
+    path: .agent/skills/secrets-management
+  - name: security-hardening
+    has_skill_file: true
+    path: .agent/skills/security-hardening
+  - name: seo-fundamentals
+    has_skill_file: true
+    path: .agent/skills/seo-fundamentals
+  - name: server-management
+    has_skill_file: true
+    path: .agent/skills/server-management
+  - name: shared-memory-systems
+    has_skill_file: true
+    path: .agent/skills/shared-memory-systems
+  - name: sre-data
+    has_skill_file: true
+    path: .agent/skills/sre-data
+  - name: sre-engineering
+    has_skill_file: true
+    path: .agent/skills/sre-engineering
+  - name: sre-practices
+    has_skill_file: true
+    path: .agent/skills/sre-practices
+  - name: startup-discovery
+    has_skill_file: true
+    path: .agent/skills/startup-discovery
+  - name: state-management
+    has_skill_file: true
+    path: .agent/skills/state-management
+  - name: storybook-patterns
+    has_skill_file: true
+    path: .agent/skills/storybook-patterns
+  - name: streaming-systems
+    has_skill_file: true
+    path: .agent/skills/streaming-systems
+  - name: supply-chain-security
+    has_skill_file: true
+    path: .agent/skills/supply-chain-security
+  - name: swarm-orchestration
+    has_skill_file: true
+    path: .agent/skills/swarm-orchestration
+  - name: systematic-debugging
+    has_skill_file: true
+    path: .agent/skills/systematic-debugging
+  - name: system-design
+    has_skill_file: true
+    path: .agent/skills/system-design
+  - name: tailwind-patterns
+    has_skill_file: true
+    path: .agent/skills/tailwind-patterns
+  - name: tanstack-query
+    has_skill_file: true
+    path: .agent/skills/tanstack-query
+  - name: task-marketplace
+    has_skill_file: true
+    path: .agent/skills/task-marketplace
+  - name: tdd-workflow
+    has_skill_file: true
+    path: .agent/skills/tdd-workflow
+  - name: testing-frontend
+    has_skill_file: true
+    path: .agent/skills/testing-frontend
+  - name: testing-patterns
+    has_skill_file: true
+    path: .agent/skills/testing-patterns
+  - name: threat-modeling
+    has_skill_file: true
+    path: .agent/skills/threat-modeling
+  - name: typescript-strict
+    has_skill_file: true
+    path: .agent/skills/typescript-strict
+  - name: ui-systems
+    has_skill_file: true
+    path: .agent/skills/ui-systems
+  - name: ux-research
+    has_skill_file: true
+    path: .agent/skills/ux-research
+  - name: vector-databases
+    has_skill_file: true
+    path: .agent/skills/vector-databases
+  - name: vulnerability-scanner
+    has_skill_file: true
+    path: .agent/skills/vulnerability-scanner
+  - name: webapp-testing
+    has_skill_file: true
+    path: .agent/skills/webapp-testing
+  - name: zero-trust-networking
+    has_skill_file: true
+    path: .agent/skills/zero-trust-networking
