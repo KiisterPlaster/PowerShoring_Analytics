@@ -3,6 +3,27 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Layers, ChevronDown, ChevronRight, Loader2 } from 'lucide-react';
 import { fetchLayerCatalog, type LayerInfo } from '../api';
 
+const getLayerColor = (layerKey: string): string => {
+  const colors: Record<string, string> = {
+    portos: '#FA441A',
+    ferrovias: '#F5F749',
+    rodovias: '#F89069',
+    gasodutos: '#60a5fa',
+    linhas_transmissao: '#fbbf24',
+    solar_uv: '#f59e0b',
+    eolica_existente: '#34d399',
+    biomassa: '#22c55e',
+    usinas_hidreletricas: '#3b82f6',
+    hubs_h2: '#06b6d4',
+    minerais_criticos: '#a855f7',
+    unidades_conservacao: '#10b981',
+    terras_indigenas: '#f97316',
+    terras_quilombolas: '#ec4899',
+    infraestrutura: '#94a3b8',
+  };
+  return colors[layerKey] || '#94a3b8';
+};
+
 interface SidebarProps {
   activeLayers: string[];
   onToggleLayer: (layerKey: string) => void;
@@ -46,8 +67,18 @@ export default function Sidebar({ activeLayers, onToggleLayer }: SidebarProps) {
       {/* Layer list */}
       <div className="flex-1 overflow-y-auto p-3 space-y-2">
         {loading ? (
-          <div className="flex items-center justify-center py-8">
-            <Loader2 className="animate-spin text-action-orange" size={24} />
+          <div className="space-y-3 px-1 pt-1">
+            {[1, 2, 3, 4, 5, 6].map((i) => (
+              <div key={i} className="w-full flex flex-col gap-2">
+                 <div className="h-8 rounded-lg bg-slate-800 animate-pulse skeleton-shimmer" />
+                 {i < 3 && (
+                   <div className="ml-4 flex flex-col gap-1.5">
+                      <div className="h-7 w-[85%] rounded-md bg-slate-800/50 animate-pulse" />
+                      <div className="h-7 w-[90%] rounded-md bg-slate-800/50 animate-pulse" />
+                   </div>
+                 )}
+              </div>
+            ))}
           </div>
         ) : (
           categories.map((cat) => (
@@ -84,16 +115,20 @@ export default function Sidebar({ activeLayers, onToggleLayer }: SidebarProps) {
                           <button
                             key={layer.layer_key}
                             onClick={() => onToggleLayer(layer.layer_key)}
-                            className={`w-full flex items-center gap-3 py-2 px-4 rounded-lg text-sm transition-all duration-200 ${
+                            className={`w-full flex items-center gap-2 py-2 px-3 rounded-lg text-xs font-medium transition-all duration-200 border mb-0.5 ${
                               isActive
-                                ? 'bg-action-orange/15 text-action-orange border border-action-orange/30'
-                                : 'text-text-secondary hover:bg-surface-hover'
+                                ? 'bg-action-orange/10 text-action-orange border-action-orange/20'
+                                : 'text-text-secondary border-transparent hover:bg-surface-hover'
                             }`}
                           >
-                            <span className="text-base">{layer.icon}</span>
+                            {/* Legend Marker - Matching official Image 3 look */}
+                            <div 
+                              className={`w-2 h-2 rounded-full shrink-0 ${isActive ? 'pulse-glow' : 'opacity-60'}`}
+                              style={{ backgroundColor: getLayerColor(layer.layer_key) }}
+                            />
                             <span className="truncate">{layer.display_name}</span>
                             {isActive && (
-                              <span className="ml-auto w-2 h-2 rounded-full bg-action-orange pulse-glow" />
+                              <span className="ml-auto text-[9px] font-bold uppercase opacity-80 tracking-widest">ON</span>
                             )}
                           </button>
                         );

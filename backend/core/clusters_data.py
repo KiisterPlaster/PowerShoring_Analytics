@@ -271,17 +271,37 @@ CLUSTERS_DATA: list[dict] = [
 
 # Layer display metadata for the frontend
 LAYER_CATALOG: list[dict] = [
-    {"layer_key": "portos", "display_name": "Portos", "category": "Logistica", "icon": "anchor"},
+    # Logistica
+    {"layer_key": "portos", "display_name": "Portos Organizados", "category": "Logistica", "icon": "anchor"},
+    {"layer_key": "instalacoes_portuarias", "display_name": "Instalações Portuárias", "category": "Logistica", "icon": "ship-wheel"},
     {"layer_key": "aeroportos", "display_name": "Aeroportos", "category": "Logistica", "icon": "plane"},
-    {"layer_key": "estradas", "display_name": "Estradas", "category": "Logistica", "icon": "road"},
+    {"layer_key": "estradas", "display_name": "Estradas Nacionais", "category": "Logistica", "icon": "road"},
     {"layer_key": "hidrovias", "display_name": "Hidrovias", "category": "Logistica", "icon": "ship"},
     {"layer_key": "ferrovias", "display_name": "Ferrovias", "category": "Logistica", "icon": "train"},
+    
+    # Energia Renovavel
     {"layer_key": "solar_uv_existente", "display_name": "Solar (Existente)", "category": "Energia", "icon": "sun"},
     {"layer_key": "solar_uv_planejada", "display_name": "Solar (Planejada)", "category": "Energia", "icon": "sun-dim"},
-    {"layer_key": "hubs_h2", "display_name": "Hubs de Hidrogenio", "category": "Energia", "icon": "flask-conical"},
-    {"layer_key": "minerais_criticos", "display_name": "Minerais Criticos", "category": "Recursos", "icon": "gem"},
-    {"layer_key": "unidades_conservacao", "display_name": "Unidades de Conservacao", "category": "Ambiental", "icon": "trees"},
-    {"layer_key": "terras_indigenas", "display_name": "Terras Indigenas", "category": "Ambiental", "icon": "tent"},
+    {"layer_key": "eolica_existente", "display_name": "Eólica (Existente)", "category": "Energia", "icon": "wind"},
+    {"layer_key": "eolica_planejada", "display_name": "Eólica (Planejada)", "category": "Energia", "icon": "fan"},
+    {"layer_key": "hubs_h2", "display_name": "Hubs de Hidrogênio", "category": "Energia", "icon": "flask-conical"},
+    
+    # Hidroeletricas
+    {"layer_key": "hidro_uhe_existente", "display_name": "UHE (Hidro Existente)", "category": "Energia", "icon": "droplets"},
+    {"layer_key": "hidro_pch_existente", "display_name": "PCH (Pequenas Centrais)", "category": "Energia", "icon": "droplet"},
+    
+    # BioEnergia & Outros
+    {"layer_key": "biomassa_existentes", "display_name": "Biomassa Existente", "category": "Energia", "icon": "sprout"},
+    {"layer_key": "biometano_comercial", "display_name": "Biometano Comercial", "category": "Energia", "icon": "flame"},
+    {"layer_key": "sistemas_isolados", "display_name": "Sistemas Isolados", "category": "Energia", "icon": "battery"},
+    
+    # Recursos & Minerais
+    {"layer_key": "minerais_criticos", "display_name": "Minerais Críticos", "category": "Recursos", "icon": "gem"},
+    {"layer_key": "terras_raras", "display_name": "Terras Raras", "category": "Recursos", "icon": "mountain"},
+    
+    # Ambiental
+    {"layer_key": "unidades_conservacao", "display_name": "Unidades de Conservação", "category": "Ambiental", "icon": "trees"},
+    {"layer_key": "terras_indigenas", "display_name": "Terras Indígenas", "category": "Ambiental", "icon": "tent"},
     {"layer_key": "terras_quilombolas", "display_name": "Terras Quilombolas", "category": "Ambiental", "icon": "home"},
     {"layer_key": "pastagens_inter", "display_name": "Pastagens Degradadas (Inter.)", "category": "Ambiental", "icon": "leaf"},
     {"layer_key": "pastagens_severa", "display_name": "Pastagens Degradadas (Severa)", "category": "Ambiental", "icon": "alert-triangle"},

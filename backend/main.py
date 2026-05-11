@@ -23,6 +23,7 @@ from api.dados_irena import router as irena_router
 from api.dados_conab import router as conab_router
 from api.dados_externos import router as ext_router
 from api.dados_atlas import router as atlas_router
+from api.analytics import router as analytics_router
 
 from core.database import init_db_tables
 from core.seeder import seed_database
@@ -98,6 +99,7 @@ app.include_router(wb_router)
 app.include_router(irena_router)
 app.include_router(conab_router)
 app.include_router(ext_router)
+app.include_router(analytics_router)
 app.include_router(atlas_router)
 
 

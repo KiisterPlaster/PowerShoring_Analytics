@@ -41,6 +41,26 @@ export interface GeoJSONResponse {
   geojson: GeoJSON.FeatureCollection;
 }
 
+export interface DecarbonizationMetrics {
+  cluster_id: string;
+  cluster_name: string;
+  proximity_metrics: {
+    nearest_transmission_grid_km: number;
+    nearest_energy_plant_km: number;
+    grid_connection_cost_est: string;
+  };
+  decarbonization_synergy: {
+    score_percentage: number;
+    carbon_offset_tons_year: number;
+    renewable_penetration_index: string;
+    regulatory_friction: string;
+  };
+  industrial_simulation: {
+    estimated_green_jobs: number;
+    attracted_investment_usd_m: number;
+  };
+}
+
 // --- Clusters ---
 export async function fetchClusters(): Promise<Cluster[]> {
   const res = await fetch(`${API_BASE}/clusters/`);
@@ -51,6 +71,13 @@ export async function fetchClusters(): Promise<Cluster[]> {
 export async function fetchCluster(id: string): Promise<Cluster> {
   const res = await fetch(`${API_BASE}/clusters/${id}`);
   if (!res.ok) throw new Error(`Failed to fetch cluster: ${id}`);
+  return res.json();
+}
+
+// --- Analytics ---
+export async function fetchDecarbonizationMetrics(clusterId: string): Promise<DecarbonizationMetrics> {
+  const res = await fetch(`${API_BASE}/analytics/decarbonization/${clusterId}`);
+  if (!res.ok) throw new Error(`Failed to fetch analytics for cluster: ${clusterId}`);
   return res.json();
 }
 

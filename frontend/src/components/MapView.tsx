@@ -3,6 +3,7 @@ import { MapContainer, TileLayer, GeoJSON, Marker, Popup, useMap } from 'react-l
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { fetchLayerGeoJSON, fetchClusters, type Cluster, type GeoJSONResponse } from '../api';
+import MapLibreView from './MapLibreView';
 
 // Fix Leaflet default marker icons
 import markerIcon2x from 'leaflet/dist/images/marker-icon-2x.png';
@@ -25,6 +26,22 @@ const clusterIcon = new L.DivIcon({
 interface MapViewProps {
   activeLayers: string[];
   onClusterSelect?: (cluster: Cluster) => void;
+  selectedCluster?: Cluster | null;
+  engine?: 'leaflet' | 'maplibre';
+  isLightMode?: boolean;
+}
+
+function LeafletController({ selectedCluster }: { selectedCluster?: Cluster | null }) {
+  const map = useMap();
+  useEffect(() => {
+    if (selectedCluster) {
+      map.flyTo([selectedCluster.lat, selectedCluster.lng], 9, {
+        animate: true,
+        duration: 1.5
+      });
+    }
+  }, [selectedCluster, map]);
+  return null;
 }
 
 function FitBrazil() {
@@ -35,7 +52,13 @@ function FitBrazil() {
   return null;
 }
 
-export default function MapView({ activeLayers, onClusterSelect }: MapViewProps) {
+export default function MapView({ 
+  activeLayers, 
+  onClusterSelect, 
+  selectedCluster,
+  engine = 'maplibre',
+  isLightMode = false 
+}: MapViewProps) {
   const [clusters, setClusters] = useState<Cluster[]>([]);
   const [layerData, setLayerData] = useState<Record<string, GeoJSON.FeatureCollection>>({});
   const [loadingLayers, setLoadingLayers] = useState<Set<string>>(new Set());
@@ -66,6 +89,17 @@ export default function MapView({ activeLayers, onClusterSelect }: MapViewProps)
     });
   }, [activeLayers, layerData, loadingLayers]);
 
+  if (engine === 'maplibre') {
+    return (
+      <MapLibreView 
+        activeLayers={activeLayers}
+        onClusterSelect={onClusterSelect}
+        selectedCluster={selectedCluster}
+        isLightMode={isLightMode}
+      />
+    );
+  }
+
   const getLayerColor = (layerKey: string): string => {
     const colors: Record<string, string> = {
       portos: '#FA441A',
@@ -91,13 +125,18 @@ export default function MapView({ activeLayers, onClusterSelect }: MapViewProps)
     <MapContainer
       center={[-14.235, -51.9253]}
       zoom={4}
-      className="w-full h-full"
+      className="w-full h-full z-0"
       zoomControl={true}
     >
       <FitBrazil />
+      <LeafletController selectedCluster={selectedCluster} />
+      
       <TileLayer
         attribution='&copy; <a href="https://carto.com">CARTO</a>'
-        url="https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        url={isLightMode 
+          ? "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png" 
+          : "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png"
+        }
       />
 
       {/* Render active GeoJSON layers */}

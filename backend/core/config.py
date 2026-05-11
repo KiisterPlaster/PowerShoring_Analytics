@@ -44,23 +44,42 @@ class Settings:
 
     # --- ArcGIS Layer Registry (from PID_REAL_APIS.md) ---
     ARCGIS_LAYERS: dict[str, str] = {
-        # Ambiental & Fundiario
+        # --- Ambiental & Fundiario ---
         "unidades_conservacao": "Unidades_Conservacao/FeatureServer/0/query",
         "terras_indigenas": "Terras_Indigenas/FeatureServer/0/query",
         "terras_quilombolas": "Terras_Quilombolas/FeatureServer/0/query",
         "pastagens_inter": "areas_potenciais_inter/FeatureServer/0/query",
         "pastagens_severa": "areas_potenciais_severa/FeatureServer/0/query",
-        # Infraestrutura (Infraestruturas_WFL1 multi-layer)
+        
+        # --- Infraestrutura (Logística) ---
         "portos": "Infraestruturas_WFL1/FeatureServer/0/query",
         "aeroportos": "Infraestruturas_WFL1/FeatureServer/1/query",
         "estradas": "Infraestruturas_WFL1/FeatureServer/2/query",
         "hidrovias": "Infraestruturas_WFL1/FeatureServer/3/query",
         "ferrovias": "Infraestruturas_WFL1/FeatureServer/4/query",
-        # Energia
-        "hubs_h2": "Hubs_H2/FeatureServer/1/query",
+        "instalacoes_portuarias": "Instala%C3%A7%C3%B5es_Portu%C3%A1rias/FeatureServer/0/query",
+        
+        # --- Minerais Críticos & Terras Raras ---
         "minerais_criticos": "Minerais_Criticos/FeatureServer/0/query",
-        "solar_uv_existente": "Solar_UFV/FeatureServer/0/query",
-        "solar_uv_planejada": "Solar_UFV/FeatureServer/1/query",
+        "terras_raras": "Minerais_de_Transi%C3%A7%C3%A3o/FeatureServer/0/query",  # Target layer for critical elements
+        
+        # --- Matriz Energética (Energias Limpas) ---
+        "hubs_h2": "Hubs_H2/FeatureServer/1/query",
+        "solar_uv_existente": "Solar_UFV_existente/FeatureServer/1/query",  # Confirmed Layer 1
+        "solar_uv_planejada": "Solar_UFV_planejada/FeatureServer/1/query",  # Confirmed Layer 1
+        "eolica_existente": "E%C3%B3lica_Existente/FeatureServer/1/query",
+        "eolica_planejada": "E%C3%B3lica_planejada/FeatureServer/1/query",
+        
+        # Hidrelétricas (PCH, UHE, CGH)
+        "hidro_pch_existente": "Hidrel%C3%A9trica_PCH_existente/FeatureServer/1/query",
+        "hidro_uhe_existente": "Hidrel%C3%A9trica_UHE_existente/FeatureServer/1/query",
+        "hidro_cgh_existente": "Hidroel%C3%A9trica_CGH_existente/FeatureServer/1/query",
+        
+        # Outros & Sistemas
+        "biomassa_existentes": "Biomassa_existentes/FeatureServer/1/query",
+        "biomassa_planejada": "Biomassa_planejada/FeatureServer/1/query",
+        "biometano_comercial": "Biometano_Comercial_/FeatureServer/0/query",
+        "sistemas_isolados": "Sistemas_Isolados/FeatureServer/1/query",
     }
 
 

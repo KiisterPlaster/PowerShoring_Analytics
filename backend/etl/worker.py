@@ -28,3 +28,13 @@ celery_app.conf.update(
 
 # Autodiscover tasks in etl directory
 celery_app.autodiscover_tasks(['etl'], force=True)
+
+# Configure Scheduled Periodic Tasks (Celery Beat)
+from celery.schedules import crontab
+
+celery_app.conf.beat_schedule = {
+    'nightly-geospatial-prefetch': {
+        'task': 'etl.precalculate_spatial_analytics',
+        'schedule': crontab(hour=3, minute=0), # 03:00 AM every day
+    },
+}
