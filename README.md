@@ -8,7 +8,6 @@
 ---
 
 ## 🌐 1. Visão Estratégica & Proposta de Valor
-*(Chancelado pelo `@[marketing-strategist]` & `@[venture-capital-agent]`)*
 
 O **PowerShoring Analytics** é uma plataforma de inteligência geoespacial projetada para ser o **"Cérebro Estratégico"** da transição energética industrial brasileira. Enquanto o mundo busca descarbonizar suas cadeias de suprimentos, o Brasil detém o maior diferencial competitivo do século XXI: a combinação de matriz energética limpa, minerais estratégicos e capacidade logística portuária.
 
@@ -22,7 +21,6 @@ Nossa plataforma resolve o gargalo da **assimetria de informações**, cruzando 
 ---
 
 ## 🏗️ 2. Arquitetura Técnica
-*(Auditado pelo `@[explorer-agent]` & `@[code-archaeologist]`)*
 
 A plataforma opera sobre uma arquitetura moderna, desacoplada e distribuída, focada em altíssima performance espacial.
 
@@ -44,7 +42,6 @@ graph TD
 ---
 
 ## 🎯 3. Funcionalidades Chave (Destaques da Solução)
-*(Certificado pelo `@[e2e-specialist]`)*
 
 ### 🗺️ Mapeamento Dinâmico & Correlação Ambiental
 Sobreposição em tempo real de bases governamentais oficiais (ANEEL, EPE, IBGE, PID):
@@ -62,7 +59,6 @@ Nosso motor proprietário realiza cruzamentos em radar charts, comparando múlti
 ---
 
 ## 📋 4. Roteiro de Execução & Operação
-*(Supervisão por `@[task-marketplace-manager]`)*
 
 Nosso desenvolvimento seguiu um ciclo rigoroso de sprint focada no produto mínimo viável escalável (Scalable MVP):
 
@@ -74,7 +70,6 @@ Nosso desenvolvimento seguiu um ciclo rigoroso de sprint focada no produto míni
 ---
 
 ## ⚖️ 5. Auditoria de Qualidade & Riscos (Self-Critic)
-*(Crítica emitada pelo `@[critic-agent]` & `@[code-reviewer]`)*
 
 | Tópico | Status | Plano de Mitigação |
 | :--- | :--- | :--- |
